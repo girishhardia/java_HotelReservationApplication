@@ -10,7 +10,6 @@ import java.util.*;
  * Service class for managing reservations and rooms.
  */
 public class ReservationService {
-    // Static reference for Singleton pattern
     private static final ReservationService INSTANCE = new ReservationService();
 
     private final Map<String, IRoom> rooms = new HashMap<>();
@@ -45,7 +44,6 @@ public class ReservationService {
         return findRooms(checkInDate, checkOutDate, rooms.values());
     }
 
-    // Helper method to find rooms from a specific collection
     private Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate, Collection<IRoom> roomsToCheck) {
         List<IRoom> availableRooms = new ArrayList<>();
         
@@ -73,7 +71,6 @@ public class ReservationService {
     }
 
     private boolean checkOverlap(Reservation reservation, Date checkInDate, Date checkOutDate) {
-        // Overlap logic: StartA < EndB && EndA > StartB
         return checkInDate.before(reservation.getCheckOutDate()) && checkOutDate.after(reservation.getCheckInDate());
     }
 
@@ -97,7 +94,6 @@ public class ReservationService {
         }
     }
     
-    // Additional method possibly useful for Admin resource, strictly fitting the "Viewing all of the hotel reservations" scenario
     public Collection<Reservation> getAllReservations() {
         return new ArrayList<>(reservations);
     }

@@ -9,7 +9,6 @@ import java.util.Map;
  * Service class for managing customers.
  */
 public class CustomerService {
-    // Static reference for Singleton pattern
     private static final CustomerService INSTANCE = new CustomerService();
     
     private final Map<String, Customer> customers = new HashMap<>();

@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class AdminMenu {
     private static final AdminResource adminResource = AdminResource.getInstance();
 
-    public void displayMenu(Scanner scanner) { // Accept scanner from MainMenu
+    public void displayMenu(Scanner scanner) { 
         boolean backToMain = false;
 
         while (!backToMain) {
@@ -45,7 +45,7 @@ public class AdminMenu {
                     displayAllReservations();
                     break;
                 case 4:
-                    addRoom(scanner); // Pass existing scanner
+                    addRoom(scanner); 
                     break;
                 case 5:
                     backToMain = true;
@@ -115,7 +115,7 @@ public class AdminMenu {
         } else if ("2".equals(typeInput)) {
             roomType = RoomType.DOUBLE;
         } else {
-            System.out.println("Invalid type. Defaulting to SINGLE."); // Prompt didn't specify strictness
+            System.out.println("Invalid type. Defaulting to SINGLE.");
             roomType = RoomType.SINGLE;
         }
 

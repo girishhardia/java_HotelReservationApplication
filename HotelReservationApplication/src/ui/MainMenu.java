@@ -63,7 +63,7 @@ public class MainMenu {
                     System.out.println("Invalid selection. Please try again.");
             }
         }
-        scanner.close(); // Careful with closing System.in if other parts use it, but here it's main.
+        scanner.close(); // closing System.in
     }
 
     private void printMainMenu() {
@@ -79,7 +79,7 @@ public class MainMenu {
     }
 
     private void findAndReserveRoom(Scanner scanner) {
-        // Basic stub for search logic. Full 7-day logic to be refined if needed.
+        
         System.out.println("Enter Check-In Date (" + DEFAULT_DATE_FORMAT + "):");
         Date checkIn = getDateInput(scanner);
         if (checkIn == null) return;
@@ -97,7 +97,7 @@ public class MainMenu {
 
         if (rooms.isEmpty()) {
             System.out.println("No rooms found for the selected dates. Searching for recommended rooms (7 days shift)...");
-             // Add 7 days logic
+             
              Date newCheckIn = addDays(checkIn, 7);
              Date newCheckOut = addDays(checkOut, 7);
              rooms = hotelResource.findARoom(newCheckIn, newCheckOut);
@@ -106,8 +106,7 @@ public class MainMenu {
                  return;
              }
              System.out.println("Rooms found for recommended dates: " + newCheckIn + " - " + newCheckOut);
-             // Should verify if user accepts these dates, but for now just show rooms.
-             // Usually we would update checkIn/checkOut to these new dates if we proceed.
+
              checkIn = newCheckIn;
              checkOut = newCheckOut;
         }
@@ -136,20 +135,17 @@ public class MainMenu {
                 String roomNumber = scanner.nextLine();
                 
                 IRoom room = hotelResource.getRoom(roomNumber);
-                // Ideally check if room is in the list of available rooms
                 if (room == null) { 
                      System.out.println("Room not found.");
                      return;
                 }
                 
-                // Assuming availability check again or relying on service
                 Reservation reservation = hotelResource.bookARoom(email, room, checkIn, checkOut);
                 System.out.println("Reservation created successfully!");
                 System.out.println(reservation);
 
             } else {
                 System.out.println("Please create an account first.");
-                // Could call createAccount(scanner) here
             }
         }
     }
@@ -165,7 +161,6 @@ public class MainMenu {
         }
     }
     
-    // Helper to add days
     private Date addDays(Date date, int days) {
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.setTime(date);

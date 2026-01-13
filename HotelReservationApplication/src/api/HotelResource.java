@@ -38,11 +38,7 @@ public class HotelResource {
     public Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
         Customer customer = getCustomer(customerEmail);
         if (customer == null) {
-            // Depending on requirements, we might want to throw an exception or return null. 
-            // For now, assuming caller handles null customer, or ensuring customer exists before booking.
-            // But strict signature doesn't throw checked exception.
-            // Let's pass the customer object we retrieved (or null) to reserveARoom.
-            // Wait, reserveARoom takes Customer.
+            return null;
         }
         return reservationService.reserveARoom(customer, room, checkInDate, checkOutDate);
     }
